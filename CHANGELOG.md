@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com//brandovidal/architecture-hexagonal-node/compare/v0.0.5...v0.0.6) (2024-02-21)
+
+
+### 🐛 Bug Fixes
+
+* rename GITHUB_TAG_NAME ([513af25](https://github.com//brandovidal/architecture-hexagonal-node/commits/513af25582254725914027333496eb5a84b70b7a))
+
 ### [0.0.5](https://github.com//brandovidal/architecture-hexagonal-node/compare/v0.0.4...v0.0.5) (2024-02-21)
 
 
