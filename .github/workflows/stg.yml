@@ -29,11 +29,11 @@ jobs:
         run: |
           git branch --show-current
           git pull
-          echo "GITHUB_TAG_NAME=${{ github.ref }}" >> $GITHUB_ENV
+          echo "GITHUB_TAG_NAME=$(TZ=GTM+5 date +'v%Y%m%d%H%M')" >> $GITHUB_ENV
 
       - name: 🏷️ Tag the commit
         run: |
-          git tag -a "${{ github.ref }}" -m "${{ github.ref }}"
+          git tag -a "${{ env.GITHUB_TAG_NAME }}" -m "${{ env.GITHUB_TAG_NAME }}"
           git push --follow-tags
 
       - name: 🚀 Create release
@@ -42,8 +42,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
+          tag_name: ${{ env.GITHUB_TAG_NAME }}
+          release_name: ${{ env.GITHUB_TAG_NAME }}
           body_path: ./CHANGELOG.md
           draft: false
           prerelease: false
