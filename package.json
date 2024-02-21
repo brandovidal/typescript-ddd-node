@@ -30,9 +30,11 @@
     "prepare": "husky install"
   },
   "keywords": [
-    "Architecture hexagonal",
-    "Node",
-    "TDD"
+    "architecture hexagonal",
+    "hexagonal",
+    "node",
+    "typescript",
+    "ddd"
   ],
   "author": "Brando Vidal",
   "license": "ISC",
