@@ -8,13 +8,21 @@ import { InvalidArgumentError } from '@Shared/domain/value-object/InvalidArgumen
 
 import { CourseReader } from '@Context/Backoffice/Course/application/CourseReader'
 
+export interface CourseReaderRequest extends Request {
+  query: {
+    id?: string
+  }
+}
+
 @injectable()
 export default class CourseAllGetController implements Controller {
   constructor (@inject('Backoffice.Course.application.CourseReader') private readonly reader: CourseReader) {}
 
-  async run (_req: Request, res: Response): Promise<void> {
+  async run (req: CourseReaderRequest, res: Response): Promise<void> {
     try {
-      const data = await this.reader.run()
+      const id = req.query.id!
+      console.log('🚀 ~ CourseAllGetController ~ run ~ id:', id)
+      const data = await this.reader.run({ id })
 
       res.status(httpStatus.OK).send({
         success: true,

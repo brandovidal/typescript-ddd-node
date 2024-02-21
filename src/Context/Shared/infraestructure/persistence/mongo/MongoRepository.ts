@@ -34,9 +34,13 @@ export abstract class MongoRepository<T extends AggregateRoot, D extends Documen
     await collection.updateOne({ id: document.id }, { $set: document }, { upsert: true })
   }
 
+  protected async searchOneByFilters (filter: Filter<D> = {}, options?: FindOptions) {
+    const collection = await this.collection()
+    return (await collection.findOne(filter, options)) as unknown as D
+  }
+
   protected async searchByFilters (filter: Filter<D> = {}, options?: FindOptions) {
     const collection = await this.collection()
-    const documents = (await collection.find(filter, options).toArray()) as unknown as T[]
-    return documents
+    return (await collection.find(filter, options).toArray()) as unknown as D[]
   }
 }

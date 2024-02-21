@@ -8,7 +8,6 @@ pnpm-lock.yaml
 ./data/*.json
 
 dist/
-tests/
 public/
 
 dist.zip

@@ -15,7 +15,7 @@ import { deleteCourseSchema } from '@Context/Backoffice/Course/domain/schemas/de
 const router = Router()
 
 const courseGetController = container.resolve(CourseAllGetController)
-router.get('/all', (req: Request, res: Response) => courseGetController.run(req, res))
+router.get('/search', (req: Request, res: Response) => courseGetController.run(req, res))
 
 const coursePostController = container.resolve(CoursePostController)
 router.post('/', validationRequestSchema(createCourseSchema), (req: Request, res: Response) => coursePostController.run(req, res))

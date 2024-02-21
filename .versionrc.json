@@ -9,7 +9,7 @@
     { "type": "perf", "section": "♻️ Code Improvements" },
     { "type": "build", "section": "🚀 Build" },
     { "type": "feat", "section": "🔨 Features" },
-    { "type": "chore", "section": "🏷️ Tasks" },
+    { "type": "chore", "section": "🔖 Tasks" },
     { "type": "style", "section": "💅 Styles" },
     { "type": "test", "section": "🧪 Tests" },
     { "type": "doc", "section": "📝 Documentation Updates" },
