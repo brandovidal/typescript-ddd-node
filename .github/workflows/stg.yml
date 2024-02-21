@@ -31,15 +31,8 @@ jobs:
           git pull
           echo "GITHUB_TAG_NAME=${{ github.ref }}" >> $GITHUB_ENV
 
-      # - name: '✏️ Generate release changelog'
-      #   id: changelog
-      #   uses: Bullrich/generate-release-changelog@master
-      #   env:
-      #     REPO: ${{ github.repository }}
-
       - name: 🏷️ Tag the commit
         run: |
-          # git tag -a "${{ github.ref }}" -m "${{ steps.changelog.outputs.changelog }}"
           git tag -a "${{ github.ref }}" -m "${{ github.ref }}"
           git push --follow-tags
 
@@ -52,6 +45,5 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
           body_path: ./CHANGELOG.md
-          # body: ${{ steps.changelog.outputs.changelog }}
           draft: false
           prerelease: false
