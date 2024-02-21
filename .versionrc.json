@@ -16,7 +16,5 @@
     { "type": "ignore", "hidden": true },
     { "type": "ci", "hidden": true },
     { "type": "bot", "hidden": true }
-  ],
-  "commitUrlFormat": "https://github.com//brandovidal/architecture-hexagonal-node/commits/{{hash}}",
-  "compareUrlFormat": "https://github.com//brandovidal/architecture-hexagonal-node/compare/{{previousTag}}...{{currentTag}}"
+  ]
 }
