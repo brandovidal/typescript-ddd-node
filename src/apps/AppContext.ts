@@ -1,0 +1,4 @@
+export enum AppContextEnum {
+  STATUS_CONTEXT = 'STATUS',
+  BACKOFFICE_CONTEXT = 'BACKOFFICE'
+}

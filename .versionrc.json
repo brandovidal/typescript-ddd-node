@@ -1,0 +1,22 @@
+{
+  "types": [
+    { "type": "fix", "section": "🐛 Bug Fixes" },
+    { "type": "bug", "section": "🐛 Bug Fixes" },
+    { "type": "hotfix", "section": "🐛 Bug Fixes" },
+    { "type": "revert", "section": "🐛 Bug Fixes" },
+    { "type": "improve", "section": "♻️ Code Improvements" },
+    { "type": "refactor", "section": "♻️ Code Improvements" },
+    { "type": "perf", "section": "♻️ Code Improvements" },
+    { "type": "build", "section": "🚀 Build" },
+    { "type": "feat", "section": "🔨 Features" },
+    { "type": "chore", "section": "🏷️ Tasks" },
+    { "type": "style", "section": "💅 Styles" },
+    { "type": "test", "section": "🧪 Tests" },
+    { "type": "doc", "section": "📝 Documentation Updates" },
+    { "type": "ignore", "hidden": true },
+    { "type": "ci", "hidden": true },
+    { "type": "bot", "hidden": true }
+  ],
+  "commitUrlFormat": "https://github.com//brandovidal/architecture-hexagonal-node/commits/{{hash}}",
+  "compareUrlFormat": "https://github.com//brandovidal/architecture-hexagonal-node/compare/{{previousTag}}...{{currentTag}}"
+}

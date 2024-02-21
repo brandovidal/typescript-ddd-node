@@ -1,0 +1,60 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "lib": ["esnext", "dom"],
+    "types": ["reflect-metadata", "node", "vitest/globals"],
+    "sourceMap": false,
+    "outDir": "dist",
+    "declaration": false,
+    "strict": true,
+    "noEmit": false,
+
+    /* Basic Options */
+    "incremental": true,
+
+    /* Strict Type-Checking Options */
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+
+    /* Additional Checks */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Module Resolution Options */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@apps/*": ["src/apps/*"],
+      "@Context/*": ["src/Context/*"],
+      "@Shared/*": ["src/Context/Shared/*"],
+      "@middlewares/*": ["src/apps/middlewares/*"],
+      "@Backoffice/*": ["src/Context/Backoffice/*"],
+      "@backoffice/*": ["src/apps/services/backoffice/*"],
+    },
+
+    /* Experimental Options */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    /* Advanced Options */
+    "forceConsistentCasingInFileNames": true,
+
+    "resolveJsonModule": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*", "tests/**/*", "config/**/*", "lambda.ts", "vitest.workspace.mts"],
+  "exclude": ["node_modules/", "dist/", "docker/"],
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  }
+}

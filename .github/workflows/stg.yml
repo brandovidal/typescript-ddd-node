@@ -1,0 +1,56 @@
+name: Tag CI
+
+on:
+  push:
+    branches:
+      - stg
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: stg
+    permissions:
+      contents: write
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: 👁️ Checking out project
+        uses: actions/checkout@v4
+
+      - name: 🔬 Set up Git
+        run: |
+          git config user.name ${{ secrets.USER_NAME }}
+          git config user.email ${{ secrets.USER_EMAIL }}
+
+      - name: 🤖 Define tag name
+        run: |
+          git branch --show-current
+          git pull
+          echo "GITHUB_TAG_NAME=${{ github.ref }}" >> $GITHUB_ENV
+          echo $GITHUB_TAG_NAME
+
+      - name: '✏️ Generate release changelog'
+        id: changelog
+        uses: Bullrich/generate-release-changelog@master
+        env:
+          REPO: ${{ github.repository }}
+
+      - name: 🏷️ Tag the commit
+        run: |
+          git tag -a "${{ github.ref }}" -m "${{ steps.changelog.outputs.changelog }}"
+          git push --follow-tags
+
+      - name: 🚀 Create release
+        id: create_release
+        uses: comnoco/create-release-action@v2.0.5
+        # uses: mikepenz/action-gh-release@v0.4.1
+        env:
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body_path: ./CHANGELOG.md
+          # body: ${{ steps.changelog.outputs.changelog }}
+          draft: false
+          prerelease: false

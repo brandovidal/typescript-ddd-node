@@ -1,0 +1,57 @@
+name: Dev CI
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: dev
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: 👁️ Checking out project
+        uses: actions/checkout@v4
+
+      - name: 🤖 Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 🔬 Use PNPM
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      - name: 🔎 Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: ⚒️ Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: ⌛ Install dependencies
+        run: |
+          pnpm install
+
+      - name: 🚀 Build App
+        run: |
+          pnpm build
+          pnpm lint
+
+      - name: 🧪 Run tests
+        run: |
+          pnpm test:ci
+        env:
+          NODE_ENV: 'test'
+          PORT: ${{ secrets.PORT }}
+          BACKOFFICE_URI: ${{ secrets.BACKOFFICE_URI_TEST }}
