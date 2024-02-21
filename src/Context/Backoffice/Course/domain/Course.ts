@@ -6,7 +6,18 @@ import { CourseStatus } from './CourseStatus'
 import { CourseCreatedAt } from './CourseCreatedAt'
 import { CourseUpdatedAt } from './CourseUpdatedAt'
 
-import { type Maybe } from '@Shared/domain/Maybe'
+import { Maybe } from '@Shared/domain/Maybe'
+
+export interface CourseDocument {
+  _id: string
+  id: string
+  name: string
+  code: string
+  description: string
+  status: string
+  created_at: Date
+  updated_at: Date
+}
 
 export interface CoursePrimitives {
   _id: string
@@ -71,6 +82,19 @@ export class Course {
       new CourseStatus(primitives.status),
       new CourseCreatedAt(primitives.created_at),
       new CourseCreatedAt(primitives.updated_at)
+    )
+  }
+
+  static fromDocument (primitives: CourseDocument) {
+    const description = Maybe.fromValue(primitives.description)
+    return this.create(
+      primitives.id,
+      primitives.name,
+      primitives.code,
+      description,
+      primitives.status,
+      primitives.created_at,
+      primitives.updated_at
     )
   }
 
