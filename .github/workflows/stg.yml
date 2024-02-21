@@ -1,4 +1,4 @@
-name: Tag CI
+name: Stg CI
 
 on:
   push:
@@ -12,6 +12,8 @@ jobs:
     permissions:
       contents: write
     env:
+      USER_NAME: 'dependabot[bot]'
+      USER_EMAIL: 'dependabot[bot]@users.noreply.github.com'
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
@@ -20,8 +22,8 @@ jobs:
 
       - name: 🔬 Set up Git
         run: |
-          git config user.name ${{ secrets.USER_NAME }}
-          git config user.email ${{ secrets.USER_EMAIL }}
+          git config user.name ${{ env.USER_NAME }}
+          git config user.email ${{ env.USER_EMAIL }}
 
       - name: 🤖 Define tag name
         run: |
@@ -44,7 +46,6 @@ jobs:
       - name: 🚀 Create release
         id: create_release
         uses: comnoco/create-release-action@v2.0.5
-        # uses: mikepenz/action-gh-release@v0.4.1
         env:
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
         with:
