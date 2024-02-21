@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     env:
+      PORT: ${{ secrets.PORT }}
+      BACKOFFICE_URI_TEST: ${{ secrets.BACKOFFICE_URI_TEST }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
@@ -53,5 +55,5 @@ jobs:
           pnpm test:ci
         env:
           NODE_ENV: 'test'
-          PORT: ${{ secrets.PORT }}
-          BACKOFFICE_URI: ${{ secrets.BACKOFFICE_URI_TEST }}
+          PORT: ${{ env.PORT }}
+          BACKOFFICE_URI: ${{ env.BACKOFFICE_URI_TEST }}
